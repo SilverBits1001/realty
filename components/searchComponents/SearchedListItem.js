@@ -1,10 +1,10 @@
 import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
-import { houseResults } from '../exampleDB';
-import { COLORS, FONTS } from '../styleConstants';
+import React, { useState } from 'react'
+import { houseResults } from '../../exampleDB';
+import { COLORS, FONTS } from '../../styleConstants';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { Icon } from 'react-native-elements';
-import { usdFormat } from '../helpers/helpers';
+import { Button, Icon } from 'react-native-elements';
+import { usdFormat } from '../../helpers/helpers';
 
 const example = {
     "bathrooms": 2,
@@ -43,22 +43,33 @@ const example = {
     "zpid": 80513508
 }
 
-const Item = ({ item, price }) => (
+const Item = ({ item, price }) => {
+
+    const [liked, setLiked] = useState(false)
+    return (
+
+        <TouchableOpacity activeOpacity={0.5} style={styles.cardWrapper}>
+            <Image style={styles.cardImage} source={{ uri: item.imgSrc }} />
+            <View style={styles.infoWrapper}>
+                <Text style={styles.price} >{price}</Text>
+                <Text>{item.bedrooms} Bed and {item.bathrooms} Bath</Text>
+                <Text>{item.city}, {item.state}</Text>
+            </View>
+            <Button
+                type='clear'
+                onPress={() => setLiked(!liked)}
+                icon={
+                    <Icon size={18} style={styles.locationIcon} name={liked ? 'heart-fill' : 'heart'} type='octicon' color={liked ? 'tomato' : 'black'} />
+                }
+                containerStyle={{}}
+                buttonStyle={styles.buttonStyle} />
 
 
-    <TouchableOpacity activeOpacity={0.5} style={styles.cardWrapper}>
-        <Image style={styles.cardImage} source={{ uri: item.imgSrc }} />
-        <View style={styles.infoWrapper}>
-            <Text style={styles.price} >{price}</Text>
-            <Text>{item.bedrooms} Bed and {item.bathrooms} Bath</Text>
-            <Text>{item.city}, {item.state}</Text>
-        </View>
-        <Icon size={18} containerStyle={styles.heart} name={'heart'} type='octicon' color={'#333'} />
+        </TouchableOpacity>
+    )
+}
 
 
-    </TouchableOpacity>
-
-);
 
 export default function SearchedListItem() {
 
@@ -113,5 +124,10 @@ const styles = StyleSheet.create({
     heart: {
         flex: 1,
         alignSelf: 'center'
-    }
+    },
+    buttonStyle: {
+        margin: 10,
+
+        borderRadius: 20,
+    },
 })

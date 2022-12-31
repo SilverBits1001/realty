@@ -1,9 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
 import { SearchBar } from 'react-native-elements'
-import { COLORS } from '../styleConstants'
-import FilterBar from './filterComponents/FilterBar'
-import FilterComponent from './filterComponents/FilterComponent'
+import { COLORS } from '../../styleConstants'
+import FilterBar from '../filterComponents/FilterBar'
+import FilterComponent from '../filterComponents/FilterComponent'
+import SavedSearches from './SavedSearches'
 
 export default function LocationSearchBar() {
     const [value, setValue] = useState('')
@@ -22,7 +23,11 @@ export default function LocationSearchBar() {
                 round
 
             />
-            {filtersActive && <FilterComponent />}
+            {filtersActive &&
+                <View>
+                     <SavedSearches />
+                    <FilterComponent />  
+                </View>}
         </View>
 
 

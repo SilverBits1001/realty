@@ -2,13 +2,13 @@ import { FlatList, SafeAreaView, ScrollView, StyleSheet, Text, View } from 'reac
 import React, { useState } from 'react'
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { COLORS } from '../styleConstants';
-import LocationSearchBar from '../components/LocationSearchBar';
+import LocationSearchBar from '../components/searchComponents/LocationSearchBar';
 import { houseResults } from '../exampleDB';
-import SearchedListItem from '../components/SearchedListItem';
+import SearchedListItem from '../components/searchComponents/SearchedListItem';
 import FilterBar from '../components/filterComponents/FilterBar';
 import { Button } from 'react-native-elements/dist/buttons/Button';
 import FeaturedHouses from '../components/FeaturedHouses';
-import SavedSearches from '../components/SavedSearches';
+import SavedSearches from '../components/searchComponents/SavedSearches';
 export default function Home() {
 
 

@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { COLORS } from '../styleConstants'
+import { COLORS } from '../../styleConstants'
 import { Button, Icon } from 'react-native-elements'
 import { TouchableOpacity } from 'react-native'
 

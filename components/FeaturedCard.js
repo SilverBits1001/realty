@@ -21,7 +21,7 @@ export default function FeaturedCard({ item }) {
                 <Button
                     onPress={() => setLiked(!liked)}
                     icon={     
-                <Icon size={18} style={styles.locationIcon} name={liked ? 'heart-fill' : 'heart'} type='octicon' color={liked ? 'tomato' : 'black'} />
+                        <Icon size={18} style={styles.locationIcon} name={liked ? 'heart-fill' : 'heart'} type='octicon' color={liked ? 'tomato' : 'black'} />
                     }
                     containerStyle={{
                         position: 'absolute',
