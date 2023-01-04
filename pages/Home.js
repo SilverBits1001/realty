@@ -1,14 +1,10 @@
-import { FlatList, SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native'
-import React, { useState } from 'react'
-import Ionicons from '@expo/vector-icons/Ionicons';
+import {  SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native'
+import React from 'react'
 import { COLORS } from '../styleConstants';
 import LocationSearchBar from '../components/searchComponents/LocationSearchBar';
-import { houseResults } from '../exampleDB';
 import SearchedListItem from '../components/searchComponents/SearchedListItem';
-import FilterBar from '../components/filterComponents/FilterBar';
-import { Button } from 'react-native-elements/dist/buttons/Button';
 import FeaturedHouses from '../components/FeaturedHouses';
-import SavedSearches from '../components/searchComponents/SavedSearches';
+import CurrentLocation from '../components/CurrentLocation';
 export default function Home() {
 
 
@@ -16,10 +12,11 @@ export default function Home() {
     return (
         <SafeAreaView style={styles.pageWrapper}>   
             <ScrollView>
-            <LocationSearchBar />
-            <SavedSearches />
+                <CurrentLocation/>
                 <FeaturedHouses />
-                <SearchedListItem />
+               <View style={styles.searchedWrapper}>
+               <SearchedListItem />
+                </View> 
             </ScrollView>
         </SafeAreaView>
 
@@ -35,8 +32,11 @@ const styles = StyleSheet.create({
     },
     pageWrapper: {
         flex: 1,
-        backgroundColor: COLORS.lightBlue
+        backgroundColor:'#fff'
 
+    },
+    searchedWrapper:{
+        backgroundColor:'#fff'
     },
     tagline: {
         fontSize: '30px',

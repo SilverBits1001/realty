@@ -19,9 +19,10 @@ export default function FeaturedCard({ item }) {
         <TouchableOpacity  activeOpacity={0.5} style={styles.cardWrapper}>
             <ImageBackground style={styles.ImageBackground} imageStyle={{ borderRadius: 10, }} source={{ uri: item.imgSrc }}>
                 <Button
+             
                     onPress={() => setLiked(!liked)}
                     icon={     
-                        <Icon size={18} style={styles.locationIcon} name={liked ? 'heart-fill' : 'heart'} type='octicon' color={liked ? 'tomato' : 'black'} />
+                        <Icon size={18} style={styles.locationIcon} name={liked ? 'heart-fill' : 'heart'} type='octicon' color={liked ? COLORS.red : 'black'} />
                     }
                     containerStyle={{
                         position: 'absolute',
@@ -114,5 +115,5 @@ const styles = StyleSheet.create({
         color: '#eee',
         fontWeight: '400'
 
-    }
+    },
 })

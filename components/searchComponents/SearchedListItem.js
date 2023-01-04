@@ -52,17 +52,49 @@ const Item = ({ item, price }) => {
             <Image style={styles.cardImage} source={{ uri: item.imgSrc }} />
             <View style={styles.infoWrapper}>
                 <Text style={styles.price} >{price}</Text>
-                <Text>{item.bedrooms} Bed and {item.bathrooms} Bath</Text>
+                <View style={{ flexDirection: 'row', }}>
+                    <View style={styles.statsWrapper}>
+                        <Icon
+                            name='bed'
+                            type='font-awesome-5'
+                            size={12}
+                        />
+                        <Text> {item.bedrooms}</Text>
+
+                    </View>
+                    <View style={styles.statsWrapper}>
+                        <Icon
+
+                            name='sink'
+                            type='font-awesome-5'
+                            size={12}
+                        />
+                        <Text> {item.bathrooms}</Text>
+                    </View>
+                    <View style={styles.statsWrapper}>
+                        <Icon
+
+                            name='ruler-combined'
+                            type='font-awesome-5'
+                            size={12}
+                        />
+                        <Text style={styles.size}> {Math.floor(item.lotAreaValue)} {item.lotAreaUnit}</Text>
+                    </View>
+                </View>
+
+
+
                 <Text>{item.city}, {item.state}</Text>
             </View>
             <Button
                 type='clear'
                 onPress={() => setLiked(!liked)}
                 icon={
-                    <Icon size={18} style={styles.locationIcon} name={liked ? 'heart-fill' : 'heart'} type='octicon' color={liked ? 'tomato' : 'black'} />
+                    <Icon size={20} style={styles.locationIcon} name={liked ? 'heart-fill' : 'heart'} type='octicon' color={liked ? COLORS.red : 'black'} />
                 }
                 containerStyle={{}}
-                buttonStyle={styles.buttonStyle} />
+                buttonStyle={styles.buttonStyle}
+            />
 
 
         </TouchableOpacity>
@@ -74,37 +106,40 @@ const Item = ({ item, price }) => {
 export default function SearchedListItem() {
 
 
-    const renderItem = ({ item }) => (
-        (item.homeType != "LOT") ?
-            <Item item={item} price={USDollar.format(item.price)} /> :
-            null
+    const RenderItem = ({ item }) => (
+        houseResults.results.map((item, index) => <Item key={index} item={item} price={usdFormat(item.price)} />)
     );
 
 
     return (
         <View style={styles.componentWrapper}>
             <Text style={styles.searchTitle}>Your Search</Text>
-            {houseResults.results.map((item, index) => <Item key={index} item={item} price={usdFormat(item.price)} />)}
+            {
+                houseResults.results && //only renders list if house.results has a value
+                houseResults.results.map((item, index) => <Item key={index} item={item} price={usdFormat(item.price)} />)
+            }
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     componentWrapper: {
-        backgroundColor: '#fff',
     },
     cardWrapper: {
         flexDirection: 'row',
         borderRadius: 15,
         marginTop: 10,
-        marginHorizontal: 15,
-        padding: 15
+        padding: 15,
+        alignItems: 'center',
+        borderTopColor: '#bbb',
+        borderTopWidth: 1
 
     },
     searchTitle: {
         fontSize: 20,
         fontWeight: 'bold',
-        marginVertical: 5
+        marginVertical: 5,
+        marginHorizontal: 15
     },
     cardImage: {
         width: 150,
@@ -119,15 +154,22 @@ const styles = StyleSheet.create({
     },
     price: {
         fontWeight: 'bold',
-        fontSize: 24
+        fontSize: 24,
+        color: '#333'
     },
     heart: {
         flex: 1,
         alignSelf: 'center'
     },
     buttonStyle: {
-        margin: 10,
 
-        borderRadius: 20,
     },
+    statsWrapper: {
+        flexDirection: 'row',
+        margin: 5,
+
+    },
+    size: {
+        textTransform: 'capitalize'
+    }
 })

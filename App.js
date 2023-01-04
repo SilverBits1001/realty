@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Search from './pages/Search';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Icon } from 'react-native-elements';
+import Favorite from './pages/Favorite';
 
 
 const Stack = createNativeStackNavigator()
@@ -13,7 +14,7 @@ const Tab = createBottomTabNavigator()
 export default function App() {
   return (
     <NavigationContainer>
-
+<StatusBar/>
       <Tab.Navigator screenOptions={{
         headerShown: false
       }}>
@@ -28,11 +29,22 @@ export default function App() {
         />
         <Stack.Screen
           name='Search'
+
           component={Search}
           options={{
-            tabBarLabel: 'Search',
+            tabBarLabel: 'Discover',
             tabBarIcon: ({ color, size }) => (
               <Icon name='search' type='octicon' color={color} />
+            ),
+          }}
+        />
+        <Stack.Screen
+          name='Favorite'
+          component={Favorite}
+          options={{
+            tabBarLabel: 'Favorite',
+            tabBarIcon: ({ color, size }) => (
+              <Icon name='heart' type='octicon' color={color} />
             ),
           }}
         />

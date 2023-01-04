@@ -25,9 +25,9 @@ export default function LocationSearchBar() {
             />
             {filtersActive &&
                 <View>
-                     <SavedSearches />
-                    <FilterComponent />  
-                </View>}
+                    <FilterComponent />
+                </View>
+            }
         </View>
 
 
@@ -36,6 +36,7 @@ export default function LocationSearchBar() {
 
 const styles = StyleSheet.create({
     searchContainer: {
+
         backgroundColor: 'transparent',
         borderBottomColor: 'transparent',
         borderTopColor: 'transparent'

@@ -23,14 +23,18 @@ const RecentSearch = ({ city, state, title }) => {
     )
 }
 
+/* 
+            <RecentSearch title='Condos that Allow pets' city='Houston' state='Texas' />
+            <RecentSearch title='1 Bedrooms near me' city='New York' state='New York' />
+ */
+
+
 export default function SavedSearches() {
     return (
 
         <View style={styles.componentWrapper}>
             <Text style={styles.heading}>Saved Searches</Text>
             <RecentSearch title='Apartnments in SD' city='Los Angeles' state='California' />
-            <RecentSearch title='Condos that Allow pets' city='Houston' state='Texas' />
-            <RecentSearch title='1 Bedrooms near me' city='New York' state='New York' />
         </View>
 
     )
@@ -41,13 +45,13 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         borderRadius: 15,
         marginHorizontal: 15,
-        marginBottom: 15,
+        marginVertical: 25,
         padding: 15,
     },
     heading: {
         fontSize: 16,
         marginTop: 5,
-        marginBottom:10,
+        marginBottom: 10,
         fontWeight: 'bold',
         color: '#333'
     },
@@ -55,7 +59,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        marginBottom: 10,
+        paddingVertical: 5,
+        borderTopColor: '#bbb',
+        borderTopWidth: 1
 
     },
     iconWrapper: {

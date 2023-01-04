@@ -31,7 +31,7 @@ export default function FilterBar() {
 
 const styles = StyleSheet.create({
   componentWrapper: {
-    margin: 5
+    marginVertical: 5
   },
   filterSelection: {
     borderRadius: 25,
