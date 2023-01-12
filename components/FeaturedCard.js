@@ -4,25 +4,40 @@ import React, { useState } from 'react'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import { Button } from 'react-native-elements/dist/buttons/Button'
 import { LinearGradient } from 'expo-linear-gradient';
-import { COLORS } from '../styleConstants';
+import { COLORS, FONT_SIZES, FONT_WEIGHTS } from '../styleConstants';
 import { Icon } from 'react-native-elements';
 import { usdFormat } from '../helpers/helpers';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateLiked } from '../src/features/liked/likedSlice';
+
+
+
 
 export default function FeaturedCard({ item }) {
 
     const [liked, setLiked] = useState(false)
     const gradient = ['transparent', 'rgba(0,0,0,0.7)']
 
+    const likedStore = useSelector((state) => state.liked)
+    const dispatch = useDispatch()
+    const isIncluded = likedStore.includes(JSON.stringify(item)) //checks if item is already in array in store
+
+    console.log(likedStore)
+
 
 
     return (
-        <TouchableOpacity  activeOpacity={0.5} style={styles.cardWrapper}>
+        <TouchableOpacity activeOpacity={0.5} style={styles.cardWrapper}>
             <ImageBackground style={styles.ImageBackground} imageStyle={{ borderRadius: 10, }} source={{ uri: item.imgSrc }}>
                 <Button
-             
-                    onPress={() => setLiked(!liked)}
-                    icon={     
-                        <Icon size={18} style={styles.locationIcon} name={liked ? 'heart-fill' : 'heart'} type='octicon' color={liked ? COLORS.red : 'black'} />
+
+                    onPress={() => {
+                        setLiked(!liked)
+                        console.log('this is ', liked);
+                        dispatch(updateLiked(item))
+                    }}
+                    icon={
+                        <Icon size={18} style={styles.locationIcon} name={isIncluded ? 'heart-fill' : 'heart'} type='octicon' color={isIncluded ? COLORS.RED : 'black'} />
                     }
                     containerStyle={{
                         position: 'absolute',
@@ -68,7 +83,7 @@ const styles = StyleSheet.create({
     },
     buttonStyle: {
         margin: 10,
-        backgroundColor: '#fff',
+        backgroundColor: COLORS.WHITE,
         borderRadius: 20,
         padding: 5,
         shadowColor: '#000000',
@@ -93,7 +108,7 @@ const styles = StyleSheet.create({
     newTextWrapper: {
         flex: 0,
         borderRadius: 20,
-        backgroundColor: COLORS.green,
+        backgroundColor: COLORS.PRIMARY,
         marginVertical: 5,
         paddingHorizontal: 10,
         paddingVertical: 5,
@@ -101,19 +116,19 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     newText: {
-        color: '#333',
-        fontSize: 14,
-        fontWeight: '600'
+        color: COLORS.LIGHT,
+        fontSize: FONT_SIZES.SMALL,
+        fontWeight: FONT_WEIGHTS.MEDIUM
     },
     price: {
-        color: 'white',
-        fontSize: 24,
+        color: COLORS.WHITE,
+        fontSize: FONT_SIZES.SUB_HEADER,
         fontWeight: 'bold',
     },
     subtext: {
-        fontSize: 18,
-        color: '#eee',
-        fontWeight: '400'
+        fontSize: FONT_SIZES.BODY,
+        color: COLORS.WHITE,
+     //   fontWeight: FONT_WEIGHTS.LIGHT
 
     },
 })

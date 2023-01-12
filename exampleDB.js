@@ -1686,7 +1686,7 @@ export const featuredResults = {
             "homeStatusForHDP": "FOR_SALE",
             "homeType": "SINGLE_FAMILY",
             "imgSrc": "https://photos.zillowstatic.com/fp/b0aea17067c3edef249eac4466e7be14-p_e.jpg",
-            "isFeatured": false,
+            "isFeatured": true,
             "isNonOwnerOccupied": true,
             "isPreforeclosureAuction": false,
             "isPremierBuilder": false,

@@ -1,8 +1,8 @@
 import {  SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { COLORS } from '../styleConstants';
+import { COLORS, FONT_SIZES } from '../styleConstants';
 import LocationSearchBar from '../components/searchComponents/LocationSearchBar';
-import SearchedListItem from '../components/searchComponents/SearchedListItem';
+import NearYouList from '../components/searchComponents/NearYouList';
 import FeaturedHouses from '../components/FeaturedHouses';
 import CurrentLocation from '../components/CurrentLocation';
 export default function Home() {
@@ -11,11 +11,11 @@ export default function Home() {
 
     return (
         <SafeAreaView style={styles.pageWrapper}>   
-            <ScrollView>
+            <ScrollView contentContainerStyle={styles.contentContainer} style={styles.scrollPadding}>
                 <CurrentLocation/>
                 <FeaturedHouses />
                <View style={styles.searchedWrapper}>
-               <SearchedListItem />
+               <NearYouList />
                 </View> 
             </ScrollView>
         </SafeAreaView>
@@ -25,25 +25,14 @@ export default function Home() {
 }
 
 const styles = StyleSheet.create({
-    iconWrapper: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        margin: 10,
-    },
     pageWrapper: {
         flex: 1,
-        backgroundColor:'#fff'
-
+        marginBottom:50
     },
-    searchedWrapper:{
-        backgroundColor:'#fff'
+    scrollPadding:{
+       paddingBottom:150
     },
-    tagline: {
-        fontSize: '30px',
-
-    },
-    filter: {
-
-
-    }
+    contentContainer: {
+        paddingBottom: 50
+      }
 })

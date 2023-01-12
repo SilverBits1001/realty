@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import React, { useRef } from 'react'
 import LocationSearchBar from '../components/searchComponents/LocationSearchBar'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import SearchedListItem from '../components/searchComponents/SearchedListItem'
+import NearYouList from '../components/searchComponents/NearYouList'
 import { ScrollView } from 'react-native'
 import backsplash from '../images/modern-house.jpg'
 import { ImageBackground } from 'react-native'
@@ -21,7 +21,7 @@ export default function Search() {
         <LocationSearchBar />
         <SavedSearches />
         <View style={styles.listWrapper}>
-          <SearchedListItem />
+          <NearYouList />
 
         </View>
       </ScrollView>
@@ -40,5 +40,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
-    paddingVertical:10  }
+    paddingVertical:10  
+  }
 }) 
