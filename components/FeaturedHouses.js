@@ -1,6 +1,6 @@
 import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
-import { featuredResults } from '../exampleDB'
+import { featuredResults, forRent } from '../exampleDB'
 import FeaturedCard from './FeaturedCard';
 import { COLORS, FONT_SIZES, FONT_WEIGHTS } from '../styleConstants';
 
@@ -8,7 +8,8 @@ import { COLORS, FONT_SIZES, FONT_WEIGHTS } from '../styleConstants';
 
 export default function FeaturedHouses() {
 
-    const featuredList = featuredResults.results.filter(item => item.isFeatured === true)
+    const featuredList = forRent.data.home_search.results.filter(item => item.flags.is_new_listing === true)
+  
     const renderItem = ({ item }) => (
         <FeaturedCard item={item} />
     );

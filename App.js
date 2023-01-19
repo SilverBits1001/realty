@@ -11,6 +11,7 @@ import { Provider } from 'react-redux';
 import { store } from './src/app/store';
 import { COLORS } from './styleConstants';
 import BottomTabNav from './BottomTabNav';
+import Details from './pages/Details';
 
 
 
@@ -22,9 +23,15 @@ export default function App() {
     <Provider store={store}>
       <NavigationContainer>
         <StatusBar />
-        <BottomTabNav />
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false
+          }}>
+          <Stack.Screen name='TabNavigator' component={BottomTabNav} />
+          <Stack.Screen name='Details' component={Details} />
+        </Stack.Navigator>
       </NavigationContainer>
-    </Provider>
+    </Provider >
 
   );
 }
@@ -32,7 +39,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor:"#fff"
+    backgroundColor: "#fff"
 
   },
 });

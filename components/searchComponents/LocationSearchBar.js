@@ -3,8 +3,6 @@ import React, { useState } from 'react'
 import { SearchBar } from 'react-native-elements'
 import { COLORS } from '../../styleConstants'
 import FilterBar from '../filterComponents/FilterBar'
-import FilterComponent from '../filterComponents/FilterComponent'
-import SavedSearches from './SavedSearches'
 
 export default function LocationSearchBar() {
     const [value, setValue] = useState('')
@@ -25,7 +23,7 @@ export default function LocationSearchBar() {
             />
             {filtersActive &&
                 <View>
-                    <FilterComponent />
+                    <FilterBar />
                 </View>
             }
         </View>
@@ -36,12 +34,12 @@ export default function LocationSearchBar() {
 
 const styles = StyleSheet.create({
     searchContainer: {
-
+        margin: 0,
         backgroundColor: 'transparent',
         borderBottomColor: 'transparent',
         borderTopColor: 'transparent'
     },
     inputContainer: {
-        backgroundColor: 'white'
+        backgroundColor: COLORS.WHITE
     },
 })

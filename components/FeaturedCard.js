@@ -9,6 +9,7 @@ import { Icon } from 'react-native-elements';
 import { usdFormat } from '../helpers/helpers';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateLiked } from '../src/features/liked/likedSlice';
+import { useNavigation } from '@react-navigation/native';
 
 
 
@@ -18,17 +19,26 @@ export default function FeaturedCard({ item }) {
     const [liked, setLiked] = useState(false)
     const gradient = ['transparent', 'rgba(0,0,0,0.7)']
 
+    const navigation = useNavigation()
+
+
     const likedStore = useSelector((state) => state.liked)
     const dispatch = useDispatch()
     const isIncluded = likedStore.includes(JSON.stringify(item)) //checks if item is already in array in store
 
-    console.log(likedStore)
+    const fullResImg = item.primary_photo.href.slice(0, -5) + "od.jpg" // modifies the orginal url to give full resolution
 
-
+console.log(fullResImg,'ccaaaat')
 
     return (
-        <TouchableOpacity activeOpacity={0.5} style={styles.cardWrapper}>
-            <ImageBackground style={styles.ImageBackground} imageStyle={{ borderRadius: 10, }} source={{ uri: item.imgSrc }}>
+        <TouchableOpacity
+            onPress={() => {
+                navigation.navigate('Details', { item: item })
+            }}
+            activeOpacity={0.5}
+            style={styles.cardWrapper}
+        >
+            <ImageBackground style={styles.ImageBackground} imageStyle={{ borderRadius: 10, }} source={{ uri: fullResImg }}>
                 <Button
 
                     onPress={() => {
@@ -50,8 +60,8 @@ export default function FeaturedCard({ item }) {
                         {(item.daysOnZillow < 7) ? <View style={styles.newTextWrapper}  >
                             <Text style={styles.newText}>New</Text>
                         </View> : null}
-                        <Text style={styles.price}>{usdFormat(item.price)}</Text>
-                        <Text style={styles.subtext}>{item.bedrooms} Bed and {item.bathrooms} Bath | {item.city}, {item.state}</Text>
+                        <Text style={styles.price}>{usdFormat(item.list_price)}</Text>
+                        <Text style={styles.subtext}>{item.description.beds} Bed and {item.description.baths} Bath | {item.location.address.city}, {item.location.address.state}</Text>
                     </View>
                 </LinearGradient>
             </ImageBackground>
@@ -128,7 +138,7 @@ const styles = StyleSheet.create({
     subtext: {
         fontSize: FONT_SIZES.BODY,
         color: COLORS.WHITE,
-     //   fontWeight: FONT_WEIGHTS.LIGHT
+        //   fontWeight: FONT_WEIGHTS.LIGHT
 
     },
 })

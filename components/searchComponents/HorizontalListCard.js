@@ -7,9 +7,15 @@ import { Button, Icon } from 'react-native-elements';
 import { usdFormat } from '../../helpers/helpers';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateLiked } from '../../src/features/liked/likedSlice';
+import { useNavigation } from '@react-navigation/native';
 
 
-export default function HorizontalListCard({ item, price }) {
+export default function HorizontalListCard({ item }) {
+
+    const fullResImg = item.primary_photo.href.slice(0, -5) + "od.jpg" // modifies the orginal url to give full resolution
+
+
+    const navigation = useNavigation()
 
 
     const [liked, setLiked] = useState(false)
@@ -20,17 +26,15 @@ export default function HorizontalListCard({ item, price }) {
 
 
 
-
     return (
 
-        <TouchableOpacity activeOpacity={0.5} style={styles.cardWrapper}>
-            <Image style={styles.cardImage} source={{ uri: item.imgSrc }} />
+        <TouchableOpacity onPress={() => navigation.navigate('Details', { item: item })} activeOpacity={0.5} style={styles.cardWrapper}>
+            <Image style={styles.cardImage} source={{ uri: fullResImg }} />
             <View style={styles.infoWrapper}>
-                <Text style={styles.price} >{price}</Text>
+                <Text style={styles.price} >{usdFormat(item.list_price)}</Text>
 
-                <Text style={styles.address}>{item.streetAddress}</Text>
-
-                <Text style={styles.address}>{item.city}, {item.state}</Text>
+                <Text style={styles.address}>{item.location.address.city}, {item.location.address.state}</Text>
+                <Text></Text>
                 <View style={{ flexDirection: 'row', }}>
                     <View style={styles.statsWrapper}>
                         <Icon
@@ -38,7 +42,7 @@ export default function HorizontalListCard({ item, price }) {
                             type='font-awesome-5'
                             size={12}
                         />
-                        <Text> {item.bedrooms}</Text>
+                        <Text> {item.description.beds}</Text>
 
                     </View>
                     <View style={styles.statsWrapper}>
@@ -48,7 +52,7 @@ export default function HorizontalListCard({ item, price }) {
                             type='font-awesome-5'
                             size={12}
                         />
-                        <Text> {item.bathrooms}</Text>
+                        <Text> {item.description.baths}</Text>
                     </View>
                     <View style={styles.statsWrapper}>
                         <Icon
@@ -57,7 +61,7 @@ export default function HorizontalListCard({ item, price }) {
                             type='font-awesome-5'
                             size={12}
                         />
-                        <Text style={styles.size}> {Math.floor(item.lotAreaValue)} {item.lotAreaUnit}</Text>
+                        <Text style={styles.size}> {Math.floor(item.description.sqft)} sqft</Text>
                     </View>
                 </View>
 
@@ -118,7 +122,7 @@ const styles = StyleSheet.create({
         fontWeight: FONT_WEIGHTS.BOLD,
         fontSize: FONT_SIZES.BODY,
         color: COLORS.DARK_GREY
-        },
+    },
     heart: {
         flex: 1,
         alignSelf: 'center'
@@ -134,7 +138,7 @@ const styles = StyleSheet.create({
     size: {
         textTransform: 'capitalize'
     },
-    address:{
-        color:COLORS.LIGHT_GREY
+    address: {
+        color: COLORS.LIGHT_GREY
     }
 })

@@ -27,7 +27,7 @@ export default function Home() {
 const styles = StyleSheet.create({
     pageWrapper: {
         flex: 1,
-        marginBottom:50
+        marginBottom:50,
     },
     scrollPadding:{
        paddingBottom:150

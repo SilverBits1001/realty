@@ -1,11 +1,12 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { COLORS } from '../../styleConstants'
+import { COLORS, FONT_SIZES, FONT_WEIGHTS } from '../../styleConstants'
 import { Button, Icon } from 'react-native-elements'
 import { TouchableOpacity } from 'react-native'
+import { useDispatch, useSelector } from 'react-redux'
+import { removeSaved } from '../../src/features/savedSearch/savedSearchSlice'
 
-
-const RecentSearch = ({ city, state, title }) => {
+const RecentSearch = ({ city, state, title, dispatch, index }) => {
     return (
         <TouchableOpacity activeOpacity={0.5} style={styles.recentSearch}>
             <View style={styles.textWrapper}>
@@ -14,10 +15,21 @@ const RecentSearch = ({ city, state, title }) => {
             </View>
             <View style={styles.iconWrapper}>
                 <Button
+                    onPress={() => {
+                        dispatch(removeSaved(index))
+                    }}
                     type='clear'
                     icon={
-                        <Icon style={styles.locationIcon} name='bookmark' type='octicon' color={COLORS.blue} />
+                        <Icon
+                            style={styles.locationIcon}
+                            color={COLORS.DARK_GREY}
+                            name='times'
+                            type='font-awesome-5'
+                            size={FONT_SIZES.SMALL}
+                        />
                     } />
+
+
             </View>
         </TouchableOpacity>
     )
@@ -30,11 +42,26 @@ const RecentSearch = ({ city, state, title }) => {
 
 
 export default function SavedSearches() {
+
+    const newSaved = useSelector((state) => state.savedSearch)
+    console.log(newSaved);
+
+    const dispatch = useDispatch()
+    if (newSaved.length === 0) {
+        return null
+    }
+
     return (
 
         <View style={styles.componentWrapper}>
             <Text style={styles.heading}>Saved Searches</Text>
-            <RecentSearch title='Apartnments in SD' city='Los Angeles' state='California' />
+            {newSaved.map((item, index) => {
+                return (
+                    <RecentSearch dispatch={dispatch} index={index} key={index} title={item.title} city={item.city} state={item.state} />
+
+                )
+            })}
+
         </View>
 
     )
@@ -42,26 +69,33 @@ export default function SavedSearches() {
 
 const styles = StyleSheet.create({
     componentWrapper: {
-        backgroundColor: '#fff',
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.075,
+        shadowRadius: 5,
+        elevation: 1,
+
+        backgroundColor: COLORS.LIGHT,
         borderRadius: 15,
         marginHorizontal: 15,
-        marginVertical: 25,
-        padding: 15,
+        marginVertical: 10,
+        padding: 10,
     },
     heading: {
-        fontSize: 16,
+        fontSize: FONT_SIZES.SMALL,
         marginTop: 5,
-        marginBottom: 10,
-        fontWeight: 'bold',
-        color: '#333'
+        marginBottom: 5,
+        fontWeight: FONT_WEIGHTS.BOLD,
+        color: COLORS.DARK_GREY
     },
     recentSearch: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
         paddingVertical: 5,
-        borderTopColor: '#bbb',
-        borderTopWidth: 1
 
     },
     iconWrapper: {
@@ -77,11 +111,11 @@ const styles = StyleSheet.create({
     },
     titleText: {
         textTransform: 'capitalize',
-        fontSize: 18,
-        color: '#333',
-        fontWeight: '500'
+        fontSize: FONT_SIZES.BODY,
+        color: COLORS.DARK_GREY,
+        fontWeight: FONT_WEIGHTS.MEDIUM
     },
     subText: {
-        color: '#777'
+        color: COLORS.LIGHT_GREY
     }
 })

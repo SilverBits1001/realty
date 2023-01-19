@@ -22,7 +22,7 @@ export default function Favorite() {
          const parsedItem = JSON.parse(item)
                    return (
 
-            < HorizontalListCard key={index} item={parsedItem} price={usdFormat(parsedItem.price)} />
+            < HorizontalListCard key={index} item={parsedItem}  />
           )
         })}
         <View>

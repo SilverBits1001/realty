@@ -1,6 +1,6 @@
 import { Button, FlatList, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
-import { COLORS } from '../../styleConstants'
+import { COLORS, FONT_WEIGHTS } from '../../styleConstants'
 
 const filters = ['House', 'Apartment', 'Condo', 'Townhouse', 'Mobile Home']
 
@@ -11,9 +11,9 @@ const FilterItem = ({ item }) => {
     <TouchableOpacity
       onPress={() => setIsPressed(!isPressed)}
       activeOpacity={1}
-      style={[styles.filterSelection, isPressed && { borderColor: COLORS.blue }]}
+      style={[styles.filterSelection, isPressed && { borderColor: COLORS.PRIMARY,  }]}
     >
-      <Text style={[styles.filterText, isPressed && { color: '#333' }]}>{item}</Text>
+      <Text style={[styles.filterText, isPressed && { color: COLORS.PRIMARY }]}>{item}</Text>
     </TouchableOpacity>
   )
 }
@@ -37,12 +37,12 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     padding: 10,
     margin: 3,
-    backgroundColor: '#fff',
+    backgroundColor: COLORS.WHITE,
     borderWidth: 1.25,
-    borderColor: '#aaa'
+    borderColor: COLORS.LIGHT_GREY,
   },
   filterText: {
-    fontWeight: '600',
-    color: '#333'
+    fontWeight: FONT_WEIGHTS.MEDIUM,
+    color: COLORS.DARK_GREY
   }
 })

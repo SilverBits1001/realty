@@ -9,7 +9,6 @@ import { COLORS } from './styleConstants';
 
 
 
-const Stack = createNativeStackNavigator()
 const Tab = createBottomTabNavigator()
 
 // const CustomIcon = ({ color, size }) => {
@@ -47,7 +46,7 @@ export default function BottomTabNav() {
       }}
 
     >
-      <Stack.Screen name='Home'
+      <Tab.Screen name='Home'
         component={Home}
         options={{
           tabBarLabel: 'Home',
@@ -56,7 +55,7 @@ export default function BottomTabNav() {
 
         }}
       />
-      <Stack.Screen
+      <Tab.Screen
         name='Search'
         component={Search}
         options={{
@@ -66,7 +65,7 @@ export default function BottomTabNav() {
           ),
         }}
       />
-      <Stack.Screen
+      <Tab.Screen
         name='Favorite'
         component={Favorite}
         options={{
