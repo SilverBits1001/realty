@@ -12,6 +12,7 @@ import { store } from './src/app/store';
 import { COLORS } from './styleConstants';
 import BottomTabNav from './BottomTabNav';
 import Details from './pages/Details';
+import Photos from './pages/Photos';
 
 
 
@@ -29,6 +30,8 @@ export default function App() {
           }}>
           <Stack.Screen name='TabNavigator' component={BottomTabNav} />
           <Stack.Screen name='Details' component={Details} />
+          <Stack.Screen name='Photos' component={Photos} />
+          
         </Stack.Navigator>
       </NavigationContainer>
     </Provider >

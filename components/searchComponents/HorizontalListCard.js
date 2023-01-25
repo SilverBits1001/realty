@@ -34,15 +34,15 @@ export default function HorizontalListCard({ item }) {
                 <Text style={styles.price} >{usdFormat(item.list_price)}</Text>
 
                 <Text style={styles.address}>{item.location.address.city}, {item.location.address.state}</Text>
-                <Text></Text>
-                <View style={{ flexDirection: 'row', }}>
+                <View style={{ flexDirection: 'row',  borderRadius:5, padding:10, }}>
                     <View style={styles.statsWrapper}>
                         <Icon
                             name='bed'
                             type='font-awesome-5'
                             size={12}
+                            color={COLORS.DARK_GREY}
                         />
-                        <Text> {item.description.beds}</Text>
+                        <Text style={styles.stats}> {item.description.beds}</Text>
 
                     </View>
                     <View style={styles.statsWrapper}>
@@ -51,8 +51,9 @@ export default function HorizontalListCard({ item }) {
                             name='sink'
                             type='font-awesome-5'
                             size={12}
+                            color={COLORS.DARK_GREY}
                         />
-                        <Text> {item.description.baths}</Text>
+                        <Text style={styles.stats}> {item.description.baths}</Text>
                     </View>
                     <View style={styles.statsWrapper}>
                         <Icon
@@ -60,8 +61,9 @@ export default function HorizontalListCard({ item }) {
                             name='ruler-combined'
                             type='font-awesome-5'
                             size={12}
+                            color={COLORS.DARK_GREY}
                         />
-                        <Text style={styles.size}> {Math.floor(item.description.sqft)} sqft</Text>
+                        <Text style={styles.stats}> {Math.floor(item.description.sqft)} sqft</Text>
                     </View>
                 </View>
 
@@ -118,6 +120,7 @@ const styles = StyleSheet.create({
         paddingLeft: 15,
         flex: 5
     },
+
     price: {
         fontWeight: FONT_WEIGHTS.BOLD,
         fontSize: FONT_SIZES.BODY,
@@ -132,11 +135,16 @@ const styles = StyleSheet.create({
     },
     statsWrapper: {
         flexDirection: 'row',
-        margin: 5,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginVertical: 0,
+        marginHorizontal:5
 
     },
-    size: {
-        textTransform: 'capitalize'
+    stats: {
+        textTransform: 'capitalize',
+        color:COLORS.DARK_GREY,
+        fontWeight:FONT_WEIGHTS.BOLD
     },
     address: {
         color: COLORS.LIGHT_GREY

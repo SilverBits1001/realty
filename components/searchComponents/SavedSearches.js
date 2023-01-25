@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     titleText: {
         textTransform: 'capitalize',
         fontSize: FONT_SIZES.BODY,
-        color: COLORS.DARK_GREY,
+        color: COLORS.PRIMARY,
         fontWeight: FONT_WEIGHTS.MEDIUM
     },
     subText: {

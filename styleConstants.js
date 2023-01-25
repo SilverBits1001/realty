@@ -10,7 +10,7 @@ export const COLORS = {
     LIGHT_BLUE:'#eaf4fe',
     WARNING:'#FFBC0A',
     DARK:'#1C1D21',
-    LIGHT:'#f5f6ff', 
+    LIGHT:'#f5f5ff', 
     WHITE:'#fff'
 
 }

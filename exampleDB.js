@@ -5680,8 +5680,8 @@ export const forRent = {
   }
 
 
-  export const singleHouseDetail = {
-    "data": {
+  export const houseDetail = {
+    
       "home": {
         "__typename": "Home",
         "property_id": "2994590763",
@@ -9705,5 +9705,5 @@ export const forRent = {
         "one_time_fees": null,
         "units": null
       }
-    }
+    
   }
